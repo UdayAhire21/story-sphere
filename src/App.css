@@ -1,0 +1,47 @@
+/* Hover effect */
+.custom-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px 5px white;
+  border-color: white;
+}
+
+/* Reset to normal size when clicked */
+.custom-card.clicked {
+  transform: scale(1) !important;
+  box-shadow: none !important;
+  border-color: black !important;
+}
+
+/* Hover effect */
+.custom-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px 5px white;
+  border-color: white;
+}
+
+/* Reset size when clicked */
+.custom-card.clicked {
+  transform: scale(1) !important;
+  box-shadow: none !important;
+  border-color: black !important;
+}
+
+/* Remove default body margin */
+body {
+  margin: 0;
+   /* fallback skin color */
+}
+
+.card-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  flex: 1 0 22%; /* About 4 columns, with gaps considered */
+  max-width: 22%;
+  box-sizing: border-box;
+}

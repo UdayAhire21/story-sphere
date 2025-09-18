@@ -1,0 +1,102 @@
+{"novelsData":[
+   {
+    "id": 1,
+    "title": "Shadows of Eternity",
+    "author": "Aether Drake",
+    "genres": ["Fantasy", "Adventure"],
+    "rating": 4.8,
+    "status": "Ongoing",
+    "thumbnail": "https://cdn.dtrpg.com/images/30074/519800.webp",
+    "summary": "A hero journeys through realms to restore balance...",
+    "chapters": [
+      { "id": 1, "title": "Prologue", "content": "Prologue text here..." },
+      { "id": 2, "title": "The Awakening", "content": "Chapter text here..." }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Neon Lattice",
+    "author": "Vira Quinn",
+    "genres": ["Sci-Fi", "Thriller"],
+    "rating": 4.5,
+    "status": "Completed",
+    "thumbnail": "https://images.stockcake.com/public/6/1/b/61bce565-362b-4ed8-89ef-3322bce3f270_large/neon-metal-gateway-stockcake.jpg",
+    "summary": "A netrunner uncovers a lattice of conspiracies across a neon megacity.",
+    "chapters": [
+      { "id": 1, "title": "Handshake", "content": "The grid hums alive..." },
+      { "id": 2, "title": "Ghost Route", "content": "She rides the ghost route..." },
+      { "id": 3, "title": "Kernel", "content": "At the kernel, truth fractures..." }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Quiet Tides",
+    "author": "Mira Sol",
+    "genres": ["Drama", "Slice of Life"],
+    "rating": 4.2,
+    "status": "Ongoing",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYNJ-V57J9pmKyih2o-tcaR-YyZy-tR-GFsA&s",
+    "summary": "A sleepy coastal town, a faded lighthouse, and second chances.",
+    "chapters": [
+      { "id": 1, "title": "Low Tide", "content": "Salt in the air..." },
+      { "id": 2, "title": "Buoy", "content": "A red buoy knocks..." }
+    ]
+  },
+   {
+    "id": "4",
+    "title": "Cybernetic Dreams",
+    "author": "Luna Skye",
+    "genres": ["Sci-Fi", "Thriller"],
+    "rating": 4.6,
+    "status": "Completed",
+    "thumbnail": "https://img-v3.deepdreamgenerator.com/1589971/urg3jm_792b574bfaf53a04e26d6ca9af14864907f1a46d.jpg",
+    "summary": "In a future where AI governs cities, a hacker uncovers a deadly conspiracy.",
+    "chapters": [
+      { "id": 1, "title": "Genesis Protocol", "content": "Chapter one text..." },
+      { "id": 2, "title": "The Code Breaker", "content": "Chapter two text..." }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Whispers of the Forgotten Gods",
+    "author": "Karan Dev",
+    "genres": ["Horror", "Mystery"],
+    "rating": 4.3,
+    "status": "Ongoing",
+    "thumbnail": "https://cdna.artstation.com/p/assets/images/images/005/348/354/large/caelan-stokkermans-damned-temple.jpg?1490378466",
+    "summary": "Nightmares plague a young man as ancient gods awaken in the shadows.",
+    "chapters": [
+      { "id": 1, "title": "The Nightmare Begins", "content": "Darkness creeps..." },
+      { "id": 2, "title": "Voices in the Walls", "content": "Echoes whispered..." }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Crimson Blades",
+    "author": "Ryo Takeda",
+    "genres": ["Action", "Martial Arts"],
+    "rating": 4.7,
+    "status": "Ongoing",
+    "thumbnail": "https://m.media-amazon.com/images/I/81f07D7HPYL._UF350,350_QL50_.jpg",
+    "summary": "A swordsman fights against corrupt empires while seeking his lost brother.",
+    "chapters": [
+      { "id": 1, "title": "Blood Oath", "content": "The oath was sworn..." },
+      { "id": 2, "title": "Duel at Dawn", "content": "Steel clashed..." }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "Chronicles of the Void",
+    "author": "Selene Arcturus",
+    "genres": ["Space Opera", "Adventure"],
+    "rating": 4.9,
+    "status": "Hiatus",
+    "thumbnail": "https://m.media-amazon.com/images/I/71mgCv-jwjL._UF1000,1000_QL80_.jpg",
+    "summary": "Explorers traverse galaxies in search of an artifact that could reshape existence.",
+    "chapters": [
+      { "id": 1, "title": "Beyond the Stars", "content": "Space stretched endlessly..." },
+      { "id": 2, "title": "Nebula Storm", "content": "The ship trembled..." }
+    ]
+  }
+]
+}
