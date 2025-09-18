@@ -11,7 +11,7 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navigation />
+        <Navigation/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<Library />} />
