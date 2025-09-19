@@ -6,7 +6,7 @@ export default class Card extends React.Component {
     super(props);
     this.state = {
       post: [],
-      filteredPost: [], // search results
+      filteredPost: [], // search RS
       searchQuery: "",
       title: '',
       author: '',
@@ -160,7 +160,7 @@ export default class Card extends React.Component {
               </div>
             ))
           ) : (
-            <p>No results found...</p>
+            <p>No results found...</p >
           )}
         </div>
       </div>
