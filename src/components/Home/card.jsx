@@ -6,7 +6,7 @@ export default class Card extends React.Component {
     super(props);
     this.state = {
       post: [],
-      filteredPost: [], // search RS
+      filteredPost: [], 
       searchQuery: "",
       title: '',
       author: '',

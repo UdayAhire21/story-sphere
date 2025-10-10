@@ -23,6 +23,7 @@ export class Home extends React.Component{
           <button style={{backgroundColor: "#1a237e",color: "#fff",padding: "10px 20px",border: "none",borderRadius: "5px",cursor: "pointer",margin: "20px"}}>
           &rarr; Next
           </button>
+          
   </div>
 
 
