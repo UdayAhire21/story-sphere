@@ -3,7 +3,7 @@ import { Navigation } from './Navigation';
 import Card from './card';
 import { Footer } from './footer';
 
-export class Home extends React.Component{
+export class Home extends React.Component {
   
   render() {
     return (
@@ -25,8 +25,6 @@ export class Home extends React.Component{
           </button>
           
   </div>
-
-
       <Footer/>
       </div>
      );
