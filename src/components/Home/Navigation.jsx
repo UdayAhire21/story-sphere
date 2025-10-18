@@ -15,7 +15,7 @@ export const Navigation = () => {
         StorySphere
       </h2>
 
-      <form className="d-flex">
+      { <form className="d-flex">
         <input
           className="form-control me-2"
           type="search"
@@ -30,7 +30,9 @@ export const Navigation = () => {
         >
           Search
         </button>
-      </form>
+      </form> }
+
+      
 
       <nav className="nav-links" style={styles.navLinks}>
         <Link to="/home" style={styles.link}>
