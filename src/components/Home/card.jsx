@@ -7,7 +7,6 @@ export default class Card extends React.Component {
     this.state = {
       post: [],
       filteredPost: [], 
-      searchQuery: "",
       title: '',
       author: '',
       genres: '',
@@ -22,6 +21,7 @@ export default class Card extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:4500/novelsData')
       .then((res) => {
+        // Initialize filteredPost with all posts
         this.setState({ post: res.data, filteredPost: res.data });
       })
       .catch((error) => {
@@ -29,9 +29,15 @@ export default class Card extends React.Component {
       });
   }
 
-  handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    this.setState({ searchQuery: query });
+  // New lifecycle method to run filtering when searchQuery prop changes
+  componentDidUpdate(prevProps) {
+    if (prevProps.searchQuery !== this.props.searchQuery) {
+      this.filterPosts(this.props.searchQuery);
+    }
+  }
+
+  filterPosts = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
 
     const filtered = this.state.post.filter((item) => {
       const title = item.title ? item.title.toLowerCase() : "";
@@ -43,9 +49,9 @@ export default class Card extends React.Component {
         : "";
 
       return (
-        title.includes(query) ||
-        author.includes(query) ||
-        genres.includes(query)
+        title.includes(lowerCaseQuery) ||
+        author.includes(lowerCaseQuery) ||
+        genres.includes(lowerCaseQuery)
       );
     });
 
@@ -55,26 +61,9 @@ export default class Card extends React.Component {
   render() {
     return (
       <div className="container">
-        {/* 🔎 Search Bar */}
-        <form className="d-flex mb-3" onSubmit={(e) => e.preventDefault()}>
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search by title, author, or genre"
-            value={this.state.searchQuery}
-            onChange={this.handleSearch}
-            style={{ width: "400px", height: "35px" }}
-          />
-          <button
-            className="btn btn-outline-success"
-            type="submit"
-            style={{ width: "100px", height: "35px" }}
-          >
-            Search
-          </button>
-        </form>
+        {/* Removed the search bar JSX from here */}
 
-        {/* 🎴 Cards */}
+        {/* 雫 Cards */}
         <div className="card-container d-flex flex-wrap">
           {this.state.filteredPost.length > 0 ? (
             this.state.filteredPost.map((item) => (
@@ -124,14 +113,14 @@ export default class Card extends React.Component {
                   >
                     {item.title}
                   </h5>
-                  <p className="card-text">👤 Author: {item.author}</p>
+                  <p className="card-text">側 Author: {item.author}</p>
                   <p className="card-text">
-                    🎭 Genres:{" "}
+                    鹿 Genres:{" "}
                     {Array.isArray(item.genres)
                       ? item.genres.join(", ")
                       : item.genres}
                   </p>
-                  <p className="card-text">⭐ Rating: {item.rating}</p>
+                  <p className="card-text">箝Rating: {item.rating}</p>
 
                   <button
                     type="button"
@@ -154,7 +143,7 @@ export default class Card extends React.Component {
                         "linear-gradient(135deg, #42a5f5, #1e88e5)";
                     }}
                   >
-                    📖 Start Reading
+                    当 Start Reading
                   </button>
                 </div>
               </div>
@@ -167,4 +156,3 @@ export default class Card extends React.Component {
     );
   }
 }
-
