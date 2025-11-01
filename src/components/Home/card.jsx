@@ -1,12 +1,17 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+// Import the local JSON data directly
+import db from '../Database/db.Json';
+
+// Safely access data, defaulting to an empty array [] if db or db.novelsData is falsy
+const novelsData = db && Array.isArray(db.novelsData) ? db.novelsData : [];
 
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: [],
-      filteredPost: [], 
+      // Initialize post and filteredPost safely to prevent undefined access errors
+      post: novelsData,
+      filteredPost: novelsData, 
       title: '',
       author: '',
       genres: '',
@@ -19,27 +24,24 @@ export default class Card extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4500/novelsData')
-      .then((res) => {
-        // Initialize filteredPost with all posts
-        this.setState({ post: res.data, filteredPost: res.data });
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data!", error);
-      });
+    // Data is loaded instantly from the import, so we apply the initial filter.
+    this.filterPosts(this.props.searchQuery || "");
   }
 
-  // New lifecycle method to run filtering when searchQuery prop changes
+  // Lifecycle method to run filtering when searchQuery prop changes (live search)
   componentDidUpdate(prevProps) {
+    // Check if the search query prop has actually changed
     if (prevProps.searchQuery !== this.props.searchQuery) {
       this.filterPosts(this.props.searchQuery);
     }
   }
 
   filterPosts = (query) => {
+    // Use this.state.post, which is guaranteed to be an array from the constructor
+    const postsToFilter = this.state.post || []; 
     const lowerCaseQuery = query.toLowerCase();
 
-    const filtered = this.state.post.filter((item) => {
+    const filtered = postsToFilter.filter((item) => {
       const title = item.title ? item.title.toLowerCase() : "";
       const author = item.author ? item.author.toLowerCase() : "";
       const genres = item.genres
@@ -59,14 +61,15 @@ export default class Card extends React.Component {
   };
 
   render() {
+    // Access filteredPost safely in render, defaulting to an empty array
+    const posts = this.state.filteredPost || [];
+    
     return (
       <div className="container">
-        {/* Removed the search bar JSX from here */}
-
         {/* 雫 Cards */}
         <div className="card-container d-flex flex-wrap">
-          {this.state.filteredPost.length > 0 ? (
-            this.state.filteredPost.map((item) => (
+          {posts.length > 0 ? (
+            posts.map((item) => (
               <div
                 className="card custom-card"
                 key={item.id}
