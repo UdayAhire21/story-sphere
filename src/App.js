@@ -10,7 +10,7 @@ import Profile from './components/user/profile';
 export default function App() {
   // Lift search state to the common parent
   const [searchQuery, setSearchQuery] = useState("");
-
+  //search change should be rollback
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };

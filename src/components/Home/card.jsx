@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 // Import the local JSON data directly
 import db from '../Database/db.Json';
 
-// Safely access data, defaulting to an empty array [] if db or db.novelsData is falsy
-const novelsData = db && Array.isArray(db.novelsData) ? db.novelsData : [];
+// Safely extract the novelsData array, handling potential import structure differences
+const novelsData = (db && db.novelsData) ? db.novelsData : [];
 
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Initialize post and filteredPost safely to prevent undefined access errors
+      // Initialize post and filteredPost with the safely extracted array
       post: novelsData,
       filteredPost: novelsData, 
       title: '',
@@ -24,7 +24,7 @@ export default class Card extends React.Component {
   }
 
   componentDidMount() {
-    // Data is loaded instantly from the import, so we apply the initial filter.
+    // Data is loaded instantly, so apply the initial filter.
     this.filterPosts(this.props.searchQuery || "");
   }
 
@@ -37,8 +37,8 @@ export default class Card extends React.Component {
   }
 
   filterPosts = (query) => {
-    // Use this.state.post, which is guaranteed to be an array from the constructor
-    const postsToFilter = this.state.post || []; 
+    // postsToFilter is guaranteed to be an array (even if empty)
+    const postsToFilter = this.state.post; 
     const lowerCaseQuery = query.toLowerCase();
 
     const filtered = postsToFilter.filter((item) => {
@@ -61,8 +61,8 @@ export default class Card extends React.Component {
   };
 
   render() {
-    // Access filteredPost safely in render, defaulting to an empty array
-    const posts = this.state.filteredPost || [];
+    // posts is guaranteed to be an array (even if empty)
+    const posts = this.state.filteredPost;
     
     return (
       <div className="container">
