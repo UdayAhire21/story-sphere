@@ -20,6 +20,7 @@ export default function Library() {
           }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
+          >//error in the library.jsx file
           Back to Top
         </button>
       </div>
