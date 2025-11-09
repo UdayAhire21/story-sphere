@@ -1,17 +1,13 @@
+import axios from 'axios';
 import React, { Component } from 'react';
-// Import the local JSON data directly
-import db from '../Database/db.Json';
-
-// Safely extract the novelsData array, handling potential import structure differences
-const novelsData = (db && db.novelsData) ? db.novelsData : [];
 
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Initialize post and filteredPost with the safely extracted array
-      post: novelsData,
-      filteredPost: novelsData, 
+      post: [],
+      filteredPost: [], 
+      searchQuery: "",
       title: '',
       author: '',
       genres: '',
@@ -24,24 +20,20 @@ export default class Card extends React.Component {
   }
 
   componentDidMount() {
-    // Data is loaded instantly, so apply the initial filter.
-    this.filterPosts(this.props.searchQuery || "");
+    axios.get('http://localhost:4500/novelsData')
+      .then((res) => {
+        this.setState({ post: res.data, filteredPost: res.data });
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
   }
 
-  // Lifecycle method to run filtering when searchQuery prop changes (live search)
-  componentDidUpdate(prevProps) {
-    // Check if the search query prop has actually changed
-    if (prevProps.searchQuery !== this.props.searchQuery) {
-      this.filterPosts(this.props.searchQuery);
-    }
-  }
+  handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    this.setState({ searchQuery: query });
 
-  filterPosts = (query) => {
-    // postsToFilter is guaranteed to be an array (even if empty)
-    const postsToFilter = this.state.post; 
-    const lowerCaseQuery = query.toLowerCase();
-
-    const filtered = postsToFilter.filter((item) => {
+    const filtered = this.state.post.filter((item) => {
       const title = item.title ? item.title.toLowerCase() : "";
       const author = item.author ? item.author.toLowerCase() : "";
       const genres = item.genres
@@ -51,9 +43,9 @@ export default class Card extends React.Component {
         : "";
 
       return (
-        title.includes(lowerCaseQuery) ||
-        author.includes(lowerCaseQuery) ||
-        genres.includes(lowerCaseQuery)
+        title.includes(query) ||
+        author.includes(query) ||
+        genres.includes(query)
       );
     });
 
@@ -61,15 +53,31 @@ export default class Card extends React.Component {
   };
 
   render() {
-    // posts is guaranteed to be an array (even if empty)
-    const posts = this.state.filteredPost;
-    
     return (
       <div className="container">
-        {/* 雫 Cards */}
+        {/* 🔎 Search Bar */}
+        <form className="d-flex mb-3" onSubmit={(e) => e.preventDefault()}>
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Search by title, author, or genre"
+            value={this.state.searchQuery}
+            onChange={this.handleSearch}
+            style={{ width: "400px", height: "35px" }}
+          />
+          <button
+            className="btn btn-outline-success"
+            type="submit"
+            style={{ width: "100px", height: "35px" }}
+          >
+            Search
+          </button>
+        </form>
+
+        {/* 🎴 Cards */}
         <div className="card-container d-flex flex-wrap">
-          {posts.length > 0 ? (
-            posts.map((item) => (
+          {this.state.filteredPost.length > 0 ? (
+            this.state.filteredPost.map((item) => (
               <div
                 className="card custom-card"
                 key={item.id}
@@ -116,14 +124,14 @@ export default class Card extends React.Component {
                   >
                     {item.title}
                   </h5>
-                  <p className="card-text">側 Author: {item.author}</p>
+                  <p className="card-text">👤 Author: {item.author}</p>
                   <p className="card-text">
-                    鹿 Genres:{" "}
+                    🎭 Genres:{" "}
                     {Array.isArray(item.genres)
                       ? item.genres.join(", ")
                       : item.genres}
                   </p>
-                  <p className="card-text">箝Rating: {item.rating}</p>
+                  <p className="card-text">⭐ Rating: {item.rating}</p>
 
                   <button
                     type="button"
@@ -146,7 +154,7 @@ export default class Card extends React.Component {
                         "linear-gradient(135deg, #42a5f5, #1e88e5)";
                     }}
                   >
-                    当 Start Reading
+                    📖 Start Reading
                   </button>
                 </div>
               </div>
@@ -159,3 +167,4 @@ export default class Card extends React.Component {
     );
   }
 }
+

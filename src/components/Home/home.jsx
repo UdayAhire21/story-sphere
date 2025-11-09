@@ -5,7 +5,6 @@ import { Footer } from './footer';
 
 export class Home extends React.Component {
   
-  //seperate the search query from the Home component
   render() {
     return (
      <div className="Home" style={{ backgroundColor: "#dcefffff"}}>
