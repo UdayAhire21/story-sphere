@@ -1,0 +1,123 @@
+/* Core Navbar Container */
+.navbar-container {
+    background-color: #1e293b;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Brand/Logo Styling */
+.navbar-brand {
+    margin: 0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.02);
+}
+
+/* Link Container */
+.navbar-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+/* Standard Links */
+.nav-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #fbbf24; /* Warm bookish amber on hover */
+}
+
+/* Animated Underline Effect for Links */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #fbbf24;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Username Display */
+.nav-username {
+    color: #e2e8f0;
+    font-weight: 600;
+    font-style: italic;
+    border-left: 1px solid #475569;
+    padding-left: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+/* Base Button Styles */
+.nav-btn {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
+
+/* Specific Button Colors */
+.admin-btn {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.admin-btn:hover {
+    background-color: #2563eb;
+}
+
+.logout-btn {
+    background-color: #ef4444;
+    color: white;
+}
+
+.logout-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Register Link styled slightly like a button for visual hierarchy */
+.register-link {
+    background-color: #fbbf24;
+    color: #1e293b !important;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.register-link:hover {
+    background-color: #f59e0b;
+}
+
+.register-link::after {
+    display: none; /* Hide the underline effect for the register button */
+}
