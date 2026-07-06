@@ -23,65 +23,74 @@ const ChapterReader = () => {
 
         try {
 
-            // Get current chapter
-            const chapterResponse =
-                await api.get(
-                    `/chapters/${id}`
-                );
+            // Load current chapter
+            const chapterResponse = await api.get(
+                `/chapters/${id}`
+            );
 
-            const currentChapter =
-                chapterResponse.data;
+            const currentChapter = chapterResponse.data;
+
+            console.log("Current Chapter :", currentChapter);
 
             setChapter(currentChapter);
 
-            // Get all chapters of this book
-            const chaptersResponse =
-                await api.get(
-                    `/chapters/book/${currentChapter.bookId}`
-                );
-
-            setChapters(
-                chaptersResponse.data
+            // Load all chapters of this book
+            const chaptersResponse = await api.get(
+                `/chapters/book/${currentChapter.bookId}`
             );
 
-            // Save Reading History
+            setChapters(chaptersResponse.data);
+
+            // Save reading history only if user is logged in
             const currentUser = JSON.parse(
                 localStorage.getItem("user")
             );
 
             if (currentUser) {
 
-                try {
+                const historyData = {
 
-    const response = await api.post(
-        "/history/save",
-        {
-            userEmail: currentUser.email,
-            bookId: currentChapter.bookId,
-            chapterId: currentChapter.id,
-            chapterNumber: currentChapter.chapterNumber
-        }
-    );
+                    userEmail: currentUser.email,
 
-    console.log("History Saved", response.data);
+                    bookId: currentChapter.bookId,
 
-} catch (error) {
+                    chapterId: currentChapter.id,
 
-    console.log("STATUS:", error.response?.status);
-    console.log("DATA:", error.response?.data);
-    console.log("FULL ERROR:", error);
+                    chapterNumber: currentChapter.chapterNumber
 
-}
+                };
 
                 console.log(
-                    "Reading history updated."
+                    "Saving History:",
+                    historyData
                 );
+
+                try {
+
+                    const response = await api.post(
+                        "/history/save",
+                        historyData
+                    );
+
+                    console.log(
+                        "History Saved:",
+                        response.data
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "History Save Failed",
+                        error.response?.data || error
+                    );
+
+                }
 
             }
 
         } catch (error) {
 
-            console.log(error);
+            console.error(error);
 
         }
 
@@ -98,7 +107,7 @@ const ChapterReader = () => {
                 <h2
                     style={{
                         textAlign: "center",
-                        marginTop: "50px"
+                        marginTop: "60px"
                     }}
                 >
                     Loading...
@@ -110,10 +119,9 @@ const ChapterReader = () => {
 
     }
 
-    const currentIndex =
-        chapters.findIndex(
-            c => c.id === chapter.id
-        );
+    const currentIndex = chapters.findIndex(
+        c => c.id === chapter.id
+    );
 
     const previousChapter =
         currentIndex > 0
@@ -140,15 +148,11 @@ const ChapterReader = () => {
             >
 
                 <h1>
-
                     Chapter {chapter.chapterNumber}
-
                 </h1>
 
                 <h2>
-
                     {chapter.chapterTitle}
-
                 </h2>
 
                 <hr />
@@ -160,9 +164,7 @@ const ChapterReader = () => {
                         fontSize: "18px"
                     }}
                 >
-
                     {chapter.content}
-
                 </div>
 
                 <br />

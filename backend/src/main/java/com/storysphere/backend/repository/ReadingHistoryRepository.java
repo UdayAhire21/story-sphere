@@ -4,26 +4,34 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.storysphere.backend.model.ReadingHistory;
 
+@Repository
 public interface ReadingHistoryRepository
         extends JpaRepository<ReadingHistory, Long> {
 
-    // Find reading history for one book of one user
-    Optional<ReadingHistory> findByUserEmailAndBookId(
+    // Return the first matching history record
+    Optional<ReadingHistory> findFirstByUserEmailAndBookId(
             String userEmail,
             Long bookId
     );
 
-    // Get all reading history of a user
+    // Return all history of a user
     List<ReadingHistory> findByUserEmail(
             String userEmail
     );
 
-    // Get reading history sorted by latest read
+    // Return history sorted by latest read
     List<ReadingHistory> findByUserEmailOrderByLastReadDesc(
             String userEmail
+    );
+
+    // Optional: Find all duplicate records of a user for a book
+    List<ReadingHistory> findAllByUserEmailAndBookId(
+            String userEmail,
+            Long bookId
     );
 
 }
